@@ -17,6 +17,8 @@ import com.pj.paying_guest_project.dto.Booking;
 import com.pj.paying_guest_project.service.BookingService;
 import com.pj.paying_guest_project.util.ResponseStructure;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
@@ -24,22 +26,22 @@ public class BookingController {
 	private BookingService bookingService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<Booking>> aveBooking(@RequestBody Booking booking, @RequestParam int tenantId, @RequestParam int porpertyId)  {
+	public ResponseEntity<ResponseStructure<Booking>> aveBooking(@Valid @RequestBody Booking booking, @RequestParam int tenantId, @RequestParam int porpertyId)  {
 		return bookingService.saveBooking(booking, tenantId, porpertyId);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<Booking>> updateBooking(@RequestBody Booking booking, @RequestParam int bookingId) {
+	public ResponseEntity<ResponseStructure<Booking>> updateBooking(@Valid @RequestBody Booking booking, @RequestParam int bookingId) {
 		return bookingService.updateBooking(booking, bookingId);
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<Booking>> deleteBooking(@RequestParam int bookingId) {
+	public ResponseEntity<ResponseStructure<Booking>> deleteBooking(@Valid @RequestParam int bookingId) {
 		return bookingService.deleteBooking(bookingId);
 	}
 	
 	@GetMapping
-	public ResponseEntity<ResponseStructure<Booking>> getBookingById(@RequestParam int bookingId) {
+	public ResponseEntity<ResponseStructure<Booking>> getBookingById(@Valid @RequestParam int bookingId) {
 		return bookingService.getBookingById(bookingId);
 	}
 	
@@ -49,7 +51,7 @@ public class BookingController {
 	}
 	
 	@PutMapping("/cancelbooking")
-	public ResponseEntity<ResponseStructure<Booking>> cancelBooking(@RequestParam int bookingId) {
+	public ResponseEntity<ResponseStructure<Booking>> cancelBooking(@Valid @RequestParam int bookingId) {
 		return bookingService.cancelBooking(bookingId);
 	}
 

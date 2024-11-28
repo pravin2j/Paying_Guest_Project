@@ -17,6 +17,8 @@ import com.pj.paying_guest_project.dto.Admin;
 import com.pj.paying_guest_project.service.AdminService;
 import com.pj.paying_guest_project.util.ResponseStructure;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -24,32 +26,32 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<Admin>> saveAdmin(@RequestBody Admin admin) {
+	public ResponseEntity<ResponseStructure<Admin>> saveAdmin(@Valid @RequestBody  Admin admin) {
 		return adminService.saveAdmin(admin);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<Admin>> updateAdmin(@RequestParam int adminId, @RequestBody Admin admin) {
+	public ResponseEntity<ResponseStructure<Admin>> updateAdmin(@Valid @RequestParam int adminId, @RequestBody Admin admin) {
 		return adminService.updateAdmin(adminId, admin);
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<Admin>> deleteAdmin(@RequestParam int adminId) {
+	public ResponseEntity<ResponseStructure<Admin>> deleteAdmin(@Valid @RequestParam int adminId) {
 		return adminService.deleteAdmin(adminId);
 	}
 	
 	@GetMapping
-	public ResponseEntity<ResponseStructure<Admin>> getAdminById(@RequestParam int adminId) {
+	public ResponseEntity<ResponseStructure<Admin>> getAdminById(@Valid @RequestParam int adminId) {
 		return adminService.getAdminById(adminId);
 	}
 	
 	@GetMapping("/getadminbyemail")
-	public ResponseEntity<ResponseStructure<Admin>> getAdminByEmail(@RequestParam String aEmail){
+	public ResponseEntity<ResponseStructure<Admin>> getAdminByEmail(@Valid @RequestParam String aEmail){
 		return adminService.getAdminByEmail(aEmail);
 	}
 	
 	@GetMapping("/adminlogin")
-	public ResponseEntity<ResponseStructure<Admin>> adminLogin(@RequestParam String aEmail,@RequestParam String password){
+	public ResponseEntity<ResponseStructure<Admin>> adminLogin(@Valid @RequestParam String aEmail,@RequestParam String password){
 		return adminService.adminLogin(aEmail, password);
 	}
 	

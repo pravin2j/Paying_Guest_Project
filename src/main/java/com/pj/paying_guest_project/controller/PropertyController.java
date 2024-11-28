@@ -18,6 +18,8 @@ import com.pj.paying_guest_project.dto.PropertyType;
 import com.pj.paying_guest_project.service.PropertyService;
 import com.pj.paying_guest_project.util.ResponseStructure;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/property")
 public class PropertyController {
@@ -25,47 +27,47 @@ public class PropertyController {
 	private PropertyService propertyService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<Property>> saveProperty(@RequestBody Property property, @RequestParam int ownerId) {
+	public ResponseEntity<ResponseStructure<Property>> saveProperty(@Valid @RequestBody Property property, @RequestParam int ownerId) {
 		return propertyService.saveProperty(property, ownerId);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<Property>> updateProperty(@RequestParam int propertyId, @RequestBody Property property) {
+	public ResponseEntity<ResponseStructure<Property>> updateProperty(@Valid @RequestParam int propertyId, @RequestBody Property property) {
 		return propertyService.updateProperty(propertyId, property);
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<Property>> deleteProperty(@RequestParam int propertyId) {
+	public ResponseEntity<ResponseStructure<Property>> deleteProperty(@Valid @RequestParam int propertyId) {
 		return propertyService.deleteProperty(propertyId);
 	}
 	
 	@GetMapping
-	public ResponseEntity<ResponseStructure<Property>> getPropertyById(@RequestParam int propertyId) {
+	public ResponseEntity<ResponseStructure<Property>> getPropertyById(@Valid @RequestParam int propertyId) {
 		return propertyService.getPropertyById(propertyId);
 	}
 	
 	@GetMapping("/getpropertybytype")
-	public ResponseEntity<ResponseStructure<List<Property>>> getPropertyByType(@RequestParam PropertyType propertyType) {
+	public ResponseEntity<ResponseStructure<List<Property>>> getPropertyByType(@Valid @RequestParam PropertyType propertyType) {
 		return propertyService.getPropertyByType(propertyType);
 	}
 	
 	@GetMapping("/getpropertybyavailability")
-	public ResponseEntity<ResponseStructure<List<Property>>> getPropertyByAvailability(@RequestParam String availability) {
+	public ResponseEntity<ResponseStructure<List<Property>>> getPropertyByAvailability(@Valid @RequestParam String availability) {
 		return propertyService.getPropertyByAvailability(availability);
 	}
 	
 	@GetMapping("/getpropertiesbyname")
-	public ResponseEntity<ResponseStructure<List<Property>>> getPropertiesByName(@RequestParam String propertyName) {
+	public ResponseEntity<ResponseStructure<List<Property>>> getPropertiesByName(@Valid @RequestParam String propertyName) {
 		return propertyService.getPropertiesByName(propertyName);
 	}
 	
 	@GetMapping("/getpropertybyrentrange")
-	public ResponseEntity<ResponseStructure<List<Property>>> getPropertyByRentRange(@RequestParam int lowerBound, @RequestParam int upperBound) {
+	public ResponseEntity<ResponseStructure<List<Property>>> getPropertyByRentRange(@Valid @RequestParam int lowerBound, @RequestParam int upperBound) {
 		return propertyService.getPropertyByRentRange(lowerBound, upperBound);
 	}
 	
 	@GetMapping("/getpropertybylocation")
-	public ResponseEntity<ResponseStructure<List<Property>>> getPropertyByLocation(@RequestParam String city, @RequestParam String state) {
+	public ResponseEntity<ResponseStructure<List<Property>>> getPropertyByLocation(@Valid @RequestParam String city, @RequestParam String state) {
 		return propertyService.getPropertyByLocation(city, state);
 	}
 	

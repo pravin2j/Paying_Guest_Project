@@ -14,6 +14,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Entity
@@ -31,8 +32,8 @@ public class Owner {
 	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", message = "Invalid Email")
 	private String oEmail;
 	private String password;
-	@Min(value = 6000000000l)
-	@Max(value = 9999999999l)
+	@NotEmpty(message = "Phone Number cannot be Null or Empty")
+	@Pattern(regexp = "^[6-9]\\d{9}$", message = "Phone number must be 10 digits and start with 6-9")
 	private String oPhoneNo;
 	@Column(updatable = false)
 	@Enumerated(EnumType.STRING)

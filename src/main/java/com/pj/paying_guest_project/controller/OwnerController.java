@@ -17,6 +17,8 @@ import com.pj.paying_guest_project.dto.Owner;
 import com.pj.paying_guest_project.service.OwnerService;
 import com.pj.paying_guest_project.util.ResponseStructure;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/owner")
 public class OwnerController {
@@ -25,32 +27,32 @@ public class OwnerController {
 	private OwnerService ownerService;
 	
 	@PostMapping
-	public ResponseEntity<ResponseStructure<Owner>> saveOwner(@RequestBody Owner owner) {
+	public ResponseEntity<ResponseStructure<Owner>> saveOwner(@Valid @RequestBody Owner owner) {
 		return ownerService.saveOwner(owner);
 	}
 	
 	@PutMapping
-	public ResponseEntity<ResponseStructure<Owner>> updateOwner(@RequestParam int ownerId, @RequestBody Owner owner) {
+	public ResponseEntity<ResponseStructure<Owner>> updateOwner(@Valid @RequestParam int ownerId, @RequestBody Owner owner) {
 		return ownerService.updateOwner(ownerId, owner);
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<ResponseStructure<Owner>> deleteOwner(@RequestParam int ownerId) {
+	public ResponseEntity<ResponseStructure<Owner>> deleteOwner(@Valid @RequestParam int ownerId) {
 		return ownerService.deleteOwner(ownerId); 
 	}
 	
 	@GetMapping
-	public ResponseEntity<ResponseStructure<Owner>> getOwnerById(@RequestParam int ownerId) {
+	public ResponseEntity<ResponseStructure<Owner>> getOwnerById(@Valid @RequestParam int ownerId) {
 		return ownerService.getOwnerById(ownerId);
 	}
 	
 	@GetMapping("/getownerbyemail")
-	public ResponseEntity<ResponseStructure<Owner>> getOwnerByEmail(@RequestParam String oEmail){
+	public ResponseEntity<ResponseStructure<Owner>> getOwnerByEmail(@Valid @RequestParam String oEmail){
 		return ownerService.getOwnerByEmail(oEmail);
 	}
 	
 	@GetMapping("/ownerlogin")
-	public ResponseEntity<ResponseStructure<Owner>> ownerLogin(@RequestParam String oEmail,@RequestParam String password){
+	public ResponseEntity<ResponseStructure<Owner>> ownerLogin(@Valid @RequestParam String oEmail,@RequestParam String password){
 		return ownerService.ownerLogin(oEmail, password);
 	}
 	

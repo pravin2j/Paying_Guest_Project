@@ -1,4 +1,4 @@
-package com.pj.paying_guest_project.util;
+package com.pj.paying_guest_project.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
